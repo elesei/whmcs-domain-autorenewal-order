@@ -8,3 +8,13 @@ This hook for WHMCS allows you to disable the auto-renew domain in the order for
 
 **Order Form Template: Standard Cart**
 
+## Screenshots
+
+**Domains Configuration:**
+
+![Domains Configuration](https://raw.githubusercontent.com/elesei/whmcs-auto-domain-renewal-order/master/domains_configuration.jpg)
+
+**Domains in ClientArea:**
+
+![Domains In ClientArea](https://raw.githubusercontent.com/elesei/whmcs-auto-domain-renewal-order/master/domains_in_clientarea.png)
+
