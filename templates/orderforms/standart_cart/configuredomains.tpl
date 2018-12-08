@@ -1,10 +1,10 @@
 {include file="orderforms/standard_cart/common.tpl"}
 
 <script>
-var _localLang = {
-    'addToCart': '{$LANG.orderForm.addToCart|escape}',
-    'addedToCartRemove': '{$LANG.orderForm.addedToCartRemove|escape}'
-}
+    var _localLang = {
+        'addToCart': '{$LANG.orderForm.addToCart|escape}',
+        'addedToCartRemove': '{$LANG.orderForm.addedToCartRemove|escape}'
+    }
 </script>
 
 <div id="order-standard_cart">
@@ -79,11 +79,10 @@ var _localLang = {
                         {/if}
                     </div>
 
-                    {if $domain.dnsmanagement || $domain.emailforwarding || $domain.idprotection}
-                        <div class="row addon-products">
-
+                    <div class="row addon-products">
+                        {if $domain.dnsmanagement || $domain.emailforwarding || $domain.idprotection}
                             {if $domain.dnsmanagement}
-                                <div class="col-sm-{math equation="12 / numAddons" numAddons=$domain.addonsCount}">
+                                <div class="col-sm-{math equation="12 / numAddons" numAddons=$domain.addonsCount+1}">
                                     <div class="panel panel-default panel-addon{if $domain.dnsmanagementselected} panel-addon-selected{/if}">
                                         <div class="panel-body">
                                             <label>
@@ -104,13 +103,13 @@ var _localLang = {
                             {/if}
 
                             {if $domain.idprotection}
-                                <div class="col-sm-{math equation="12 / numAddons" numAddons=$domain.addonsCount}">
+                                <div class="col-sm-{math equation="12 / numAddons" numAddons=$domain.addonsCount+1}">
                                     <div class="panel panel-default panel-addon{if $domain.idprotectionselected} panel-addon-selected{/if}">
                                         <div class="panel-body">
                                             <label>
                                                 <input type="checkbox" name="idprotection[{$num}]"{if $domain.idprotectionselected} checked{/if} />
                                                 {$LANG.domainidprotection}
-                                                </label><br />
+                                            </label><br />
                                             {$LANG.domainaddonsidprotectioninfo}
                                         </div>
                                         <div class="panel-price">
@@ -125,7 +124,7 @@ var _localLang = {
                             {/if}
 
                             {if $domain.emailforwarding}
-                                <div class="col-sm-{math equation="12 / numAddons" numAddons=$domain.addonsCount}">
+                                <div class="col-sm-{math equation="12 / numAddons" numAddons=$domain.addonsCount+1}">
                                     <div class="panel panel-default panel-addon{if $domain.emailforwardingselected} panel-addon-selected{/if}">
                                         <div class="panel-body">
                                             <label>
@@ -144,9 +143,27 @@ var _localLang = {
                                     </div>
                                 </div>
                             {/if}
-
+                        {/if}
+                        <div class="col-sm-{math equation="12 / numAddons" numAddons=$domain.addonsCount+1}">
+                            <div class="panel panel-default panel-addon">
+                                <div class="panel-body">
+                                    <label style="margin-right: .5em">
+                                        {$LANG.domainsautorenew}:
+                                    </label>
+                                    <input type="radio" name="donotrenew[{$num}]" id="donotrenew[{$num}]" value="1" {if $domain.donotrenew === '1'}checked{/if} />
+                                    <label for="donotrenew[{$num}]">
+                                        {$LANG.domainsautorenewradiooff}
+                                    </label>
+                                    <input type="radio" name="donotrenew[{$num}]" id="donotrenew[{$num}]" value="0" {if !$domain.donotrenew}checked{/if} />
+                                    <label for="donotrenew[{$num}]">
+                                        {$LANG.domainsautorenewradioon}
+                                    </label>
+                                    <br />
+                                    {$LANG.domainsautorenewradiodescription}
+                                </div>
+                            </div>
                         </div>
-                    {/if}
+                    </div>
                     {foreach from=$domain.fields key=domainfieldname item=domainfield}
                         <div class="row">
                             <div class="col-sm-4">{$domainfieldname}:</div>
